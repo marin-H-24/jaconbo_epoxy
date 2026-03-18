@@ -78,36 +78,54 @@ def main(page: ft.Page):
     )
 
     # --- CONSTRUCCIÓN DE LA VISTA ---
+    # --- CONFIGURACIÓN DE PÁGINA ---
+    page.scroll = "auto"
+    page.padding = 20
+
+    # --- CONSTRUCCIÓN DE LA VISTA ---
     page.add(
         ft.Text("Jacobo Epoxy", size=32, weight="bold", color=color_titulo),
-        
         ft.Container(height=10),
+        
         ft.Text("DIMENSIONES DEL MOLDE", weight="bold", color=color_texto),
-        ft.Row([i_l, i_an, i_al]),
-        ft.Row([i_ra, i_rb]),
+        # Quitamos las Rows para que no se corten en el celular
+        i_l,
+        i_an,
+        i_al,
         i_pz,
         
         ft.Container(height=15),
+        ft.Text("PROPORCIÓN DE MEZCLA", weight="bold", color=color_texto),
+        i_ra,
+        i_rb,
+        
+        ft.Container(height=15),
         ft.Text("FINANZAS DEL NEGOCIO", weight="bold", color=color_texto),
-        ft.Row([i_costo, i_peso]),
-        # Texto explicativo seguro fuera del TextField
-        ft.Text("Ingresa el porcentaje deseado (Ej: 20 para el 20%, 50 para el 50%):", size=12, color=color_texto),
+        i_costo,
+        i_peso,
+        
+        # Texto explicativo antes del margen
+        ft.Text(
+            "Ingresa el porcentaje deseado (Ej: 20 para el 20%, 50 para el 50%):", 
+            size=12, 
+            color=color_texto
+        ),
         i_margen,
         
         ft.Container(height=20),
         ft.ElevatedButton(
-            "CALCULAR PROYECTO", 
-            on_click=procesar, 
-            bgcolor=color_boton, 
-            color="#FFFFFF", # Texto blanco puro en el botón
-            width=500, 
-            height=55
+            "CALCULAR PROYECTO",
+            on_click=procesar,
+            bgcolor=color_boton,
+            color="#FFFFFF",
+            width=500,
+            height=55,
         ),
         
         ft.Container(height=20),
         tarjeta_resultados,
         
-        ft.Container(height=40) # Margen inferior
+        ft.Container(height=40) # Margen inferior para que no pegue al borde
     )
 
 if __name__ == "__main__":
